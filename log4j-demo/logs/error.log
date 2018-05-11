@@ -1,0 +1,30 @@
+[ERROR]2018-05-10 10:19:28 620 [main][com.hjs.demo.TestBase.addError(TestBase.java:33)]: 
+test2 this is error 
+3
+ [ERROR]2018-05-10 10:19:28 622 [main][com.hjs.demo.TestBase.addError(TestBase.java:33)]: 
+test2 this is error 
+5
+ [ERROR]2018-05-10 10:19:28 623 [main][com.hjs.demo.TestBase.addError(TestBase.java:38)]: 
+/ by zero
+java.lang.ArithmeticException: / by zero
+6
+ [ERROR]2018-05-10 10:22:23 775 [main][com.hjs.demo.Test2.testLog4j(Test2.java:9)]: 
+test2 this is error 
+4
+ [ERROR]2018-05-10 10:22:23 777 [main][com.hjs.demo.Test3.testLog4j(Test3.java:8)]: 
+test3 this is error 
+6
+ [ERROR]2018-05-10 10:22:23 778 [main][com.hjs.demo.Test2.testLogException(Test2.java:16)]: 
+java.lang.ArithmeticException: / by zero
+7
+ [ERROR]2018-05-10 10:22:49 780 [main][com.hjs.demo.Test2.testLog4j(Test2.java:9)]: 
+test2 this is error 
+3
+ [ERROR]2018-05-10 10:22:49 781 [main][com.hjs.demo.Test3.testLog4j(Test3.java:8)]: 
+test3 this is error 
+4
+ [ERROR]2018-05-10 10:22:49 782 [main][com.hjs.demo.Test2.testLogException(Test2.java:16)]: 
+/ by zero
+java.lang.ArithmeticException: / by zero
+5
+ 
