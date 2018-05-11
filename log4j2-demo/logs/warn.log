@@ -1,0 +1,5 @@
+[14:13:47:756] [WARN] - com.test.log4j2Test.testLevel(log4j2Test.java:14) - this is warn
+[14:14:38:983] [WARN] - com.test.log4j2Test.testLevel(log4j2Test.java:14) - this is warn
+[14:19:46:601] [WARN] - com.test.log4j2Test.testLevel(log4j2Test.java:14) - this is warn
+[14:20:17:797] [WARN] - com.test.log4j2Test.testLevel(log4j2Test.java:14) - this is warn
+[14:20:43:767] [WARN] - com.test.log4j2Test.testLevel(log4j2Test.java:14) - this is warn

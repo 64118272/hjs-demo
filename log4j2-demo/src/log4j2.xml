@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status="INFO" 相当于总开关，生产环境一般默认设置为 INFO, 测试环境建议设置为 Trace -->
+<configuration status="INFO" monitorInterval="30">
+	<appenders>
+		<!-- 控制台配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!--过滤器：控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）ACCEPT,DENY -->
+			<ThresholdFilter level="INFO" onMatch="ACCEPT"
+				onMismatch="DENY" />
+
+			<!-- 定义控制台输出格式，与log4j一样，在打印的时候 yyyy-MM-dd可以不用输出 -->
+			<PatternLayout pattern="[%-5p]%d{HH:mm:ss.SSS} [%t]:%l:%n%msg%n" />
+		</Console>
+	
+		<!-- 文件到达一定大小就产生一个新的文件 -->
+		<RollingFile name="RollingFileInfo" fileName="logs/info.log"
+			filePattern="logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+			<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+			<Filters>
+				<ThresholdFilter level="INFO" />
+				<!-- 将warn及以上过滤掉，确保文件只有info信息，避免重复输出, 但是实际上这样应该是没有意义的，不连续 无法对问题进行连贯性定位 -->
+				<ThresholdFilter level="WARN" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+			</Filters>
+			<PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+		</RollingFile>
+
+		<!-- warn信息处理 -->
+		<RollingFile name="RollingFileWarn" fileName="logs/warn.log"
+			filePattern="logs/$${date:yyyy-MM}/warn-%d{yyyy-MM-dd}-%i.log">
+			<Filters>
+				<ThresholdFilter level="WARN" />
+				<ThresholdFilter level="ERROR" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+			</Filters>
+			<PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n" />
+			<Policies>
+				<!-- 基于时间滚动，默认为1小时 -->
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+		</RollingFile>
+
+		<!-- error信息处理 -->
+		<RollingFile name="RollingFileError" fileName="logs/error.log"
+			filePattern="logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
+			<ThresholdFilter level="ERROR" />
+			<PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 MB" />
+			</Policies>
+		</RollingFile>
+	</appenders>
+
+	<loggers>
+		<!-- 所有追回器均要在此配置 -->
+		<root level="INFO">
+			<appender-ref ref="Console" />
+			<appender-ref ref="RollingFileInfo" />
+			<appender-ref ref="RollingFileWarn" />
+			<appender-ref ref="RollingFileError" />
+		</root>
+
+		<!-- 在console的level基础上,控制单个对像的日志级别 不知道为什么，加上了这个，日志文件就没有输出了 -->
+		<!-- <logger name="com.test.log4j2Test" level="trace" additivity="false"> 
+			<appender-ref ref="Console" /> </logger> -->
+
+	</loggers>
+
+</configuration> 

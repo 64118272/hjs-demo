@@ -1,0 +1,2 @@
+[14:20:43:767] [ERROR] - com.test.log4j2Test.testLevel(log4j2Test.java:15) - this is error
+[14:20:43:768] [FATAL] - com.test.log4j2Test.testLevel(log4j2Test.java:16) - this is fatal
